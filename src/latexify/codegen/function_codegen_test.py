@@ -31,7 +31,6 @@ def test_visit_functiondef_use_signature() -> None:
             """
         )
     ).body[0]
-    breakpoint()
     assert isinstance(tree, ast.FunctionDef)
 
     latex_without_flag = "x"
