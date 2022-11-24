@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import ast
 import textwrap
-
+import numpy as np
 import pytest
 
 from latexify import exceptions
@@ -31,6 +31,7 @@ def test_visit_functiondef_use_signature() -> None:
             """
         )
     ).body[0]
+    breakpoint()
     assert isinstance(tree, ast.FunctionDef)
 
     latex_without_flag = "x"
