@@ -367,6 +367,15 @@ class FunctionCodegen(ast.NodeVisitor):
                 + rf" \mathopen{{}}\left({{{elt}}}\mathclose{{}}\right)"
             )
 
+        if func_str == "zeros":
+            matrix_str = "$$ "
+            str1 = "{" + self.visit(node.args[0].elts[0])
+            str2 = self.visit(node.args[0].elts[1]) + "}"
+            matrix_str += f"0 ^ {str1} \times {str2}"
+            matrix_str += " $$"
+            breakpoint()
+            return matrix_str
+
         arg_strs = [self.visit(arg) for arg in node.args]
         return lstr + ", ".join(arg_strs) + rstr
 

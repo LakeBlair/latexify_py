@@ -744,3 +744,19 @@ def test_use_set_symbols_compare(code: str, latex: str) -> None:
     tree = ast.parse(code).body[0].value
     assert isinstance(tree, ast.Compare)
     assert function_codegen.FunctionCodegen(use_set_symbols=True).visit(tree) == latex
+
+
+def test_generate_special_arrays():
+    tree = ast.parse(
+        textwrap.dedent(
+            """
+        def f(a, b):
+            return np.zeros((a,b))
+            """
+        )
+    ).body[0]
+    breakpoint()
+    latex = "\\mathrm{f}(a, b) = $$ 0 ^ {a \times b} $$"
+    assert isinstance(tree, ast.FunctionDef)
+    assert FunctionCodegen().visit(tree) == latex
+    
